@@ -1,0 +1,52 @@
+<definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="urn:CPWebServiceImplService"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             name="CPWebServiceImplService"
+             targetNamespace="urn:CPWebServiceImplService">
+
+    <types xmlns="http://schemas.xmlsoap.org/wsdl/"></types>
+    <message name="receiveResultWebChargingRequest">
+        <part name="content_id" type="xsd:string"/>
+        <part name="cpCode" type="xsd:string"/>
+        <part name="gameCode" type="xsd:string"/>
+        <part name="totalAmount" type="xsd:string"/>
+        <part name="account" type="xsd:string"/>
+        <part name="isdn" type="xsd:string"/>
+        <part name="result" type="xsd:string"/>
+    </message>
+    <message name="receiveResultWebChargingResponse">
+        <part name="result" type="xsd:string"/>
+    </message>
+    <portType name="CPWebServiceImplServicePort">
+        <operation name="receiveResultWebCharging">
+            <input message="tns:receiveResultWebChargingRequest"/>
+            <output message="tns:receiveResultWebChargingResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="CPWebServiceImplServiceBinding" type="tns:CPWebServiceImplServicePort">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="receiveResultWebCharging">
+            <soap:operation soapAction="http://services.cp/#CPWebServiceImpl#receiveResultWebCharging"/>
+            <input>
+                <soap:body use="encoded" namespace="http://services.cp/"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="http://services.cp/"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="CPWebServiceImplServiceService">
+        <documentation/>
+        <port name="CPWebServiceImplServicePort" binding="tns:CPWebServiceImplServiceBinding">
+            <!--<soap:address location="http://10.2.10.4/VMS_v2/services.php"/>-->
+            <!--<soap:address location="http://10.2.10.4:8002/services"/>-->
+            <soap:address location="http://10.54.26.126:8002/services"/>
+        </port>
+    </service>
+</definitions>

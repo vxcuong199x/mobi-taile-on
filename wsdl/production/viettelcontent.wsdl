@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  name="sms_sub_content"
+                  xmlns:tns="http://www.csapi.org/wsdl/parlayx/data/sync/v1_0/service"
+                  xmlns:loc="http://www.csapi.org/schema/parlayx/data/sync/v1_0/local"
+                  targetNamespace="http://www.csapi.org/wsdl/parlayx/data/sync/v1_0/service">
+    <wsdl:types>
+        <xsd:schema elementFormDefault="qualified"
+                    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://www.csapi.org/schema/parlayx/data/sync/v1_0/local">
+            <xsd:element name="eleContentRequest" type="loc:eleContentRequest"/>
+            <xsd:complexType name='eleContentRequest'>
+                <xsd:sequence>
+                    <xsd:element name="username" type="xsd:string"/>
+                    <xsd:element name="password" type="xsd:string"/>
+                    <xsd:element name="serviceid" type="xsd:string"/>
+                    <xsd:element name="msisdn" type="xsd:string"/>
+                    <xsd:element name="params" type="xsd:string"/>
+                    <xsd:element name="mode" type="xsd:string"/>
+                    <xsd:element name="amount" type="xsd:int" minOccurs="0" maxOccurs="1"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:element name="eleContentResponse" type="loc:eleContentResponse"/>
+            <xsd:complexType name="eleContentResponse">
+                <xsd:sequence>
+                    <xsd:element name="result" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="contentRequest">
+        <wsdl:part name="parameters" element="loc:eleContentRequest"/>
+    </wsdl:message>
+    <wsdl:message name="contentRequestResponse">
+        <wsdl:part name="result" element="loc:eleContentResponse"/>
+    </wsdl:message>
+
+    <wsdl:portType name="ContentPortType">
+        <wsdl:operation name="contentRequest">
+            <wsdl:input message="tns:contentRequest"/>
+            <wsdl:output message="tns:contentRequestResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="ContentBinding" type="tns:ContentPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="contentRequest">
+            <soap:operation soapAction="contentRequest" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ContentService">
+        <wsdl:port name="ContentPort" binding="tns:ContentBinding">
+            <!--<soap:address location="http://210.211.99.118:8400/getcontent"/>-->
+            <soap:address location="http://10.58.82.131:8400/getcontent"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

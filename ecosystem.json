@@ -1,0 +1,38 @@
+[
+  {
+    "name": "on_mobi_taile",
+    "script": "app.js",
+    "error_file": "./logs/on_mobi_taile-err.log",
+    "out_file": "./logs/on_mobi_taile-out.log",
+    "pid_file": "./logs/on_mobi_taile.pid",
+    "exec_mode": "cluster_mode",
+    "instances": 4,
+    "log_date_format": "YYYY-MM-DD HH:mm Z",
+    "watch": [
+      "common",
+      "config",
+      "writeLog",
+      "lib",
+      "wsdl",
+      "app.js"
+    ],
+    "env": {
+      "NODE_ENV": "production"
+    }
+  },
+  {
+    "name": "on_mobi_putcdr",
+    "script": "./putCdr/putCdr.js",
+    "error_file": "./logs/on_mobi_putcdr-err.log",
+    "out_file": "./logs/on_mobi_putcdr-out.log",
+    "pid_file": "./logs/on_mobi_putcdr.pid",
+    "exec_mode": "fork_mode",
+    "log_date_format": "YYYY-MM-DD HH:mm Z",
+    "watch": [
+      "common",
+      "config",
+      "writeLog",
+      "./putCdr/putCdr.js"
+    ]
+  }
+]

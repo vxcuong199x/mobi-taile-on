@@ -1,0 +1,33 @@
+{
+  "name": "on-viettel-tai-le",
+  "private": true,
+  "author": "CuongVX",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "basic-ftp": "^4.5.3",
+    "bluebird": "^3.4.0",
+    "config": "^1.20.4",
+    "cron": "^1.8.2",
+    "express": "*",
+    "ioredis": "^4.28.0",
+    "lodash": "^4.13.1",
+    "md5": "^2.1.0",
+    "moment": "^2.12.0",
+    "mongodb": "^3.5.3",
+    "nodemailer": "^6.4.5",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "soap": "^0.37.0",
+    "xml-js": "^1.6.11"
+  },
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "snazzy": "^6.0.0",
+    "standard": "^8.6.0"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "node test/content.js",
+    "lint": "standard **/*.js --verbose | snazzy",
+    "lint-fix": "standard **/*.js --fix | snazzy"
+  }
+}
